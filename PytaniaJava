@@ -1,4 +1,4 @@
-# JAVA 
+# Java
 
 1.	Co to jest String Pool
 	String Pool jest to miejsce w Heapie gdzie przechowywane są stworzone Stringi.
