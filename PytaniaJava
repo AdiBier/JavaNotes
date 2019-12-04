@@ -336,224 +336,216 @@
 		"high level object should not depend on low level implementations, they should
 		both depened on abstracions"
 
-51. Jakiej listy użyjesz, żeby dane dodawać np: zawsze na początku?
-	Linked list
+51. Jaka lista jeżeli chcę dodawać dane zawsze na początku?
+	Klasa LinkedList posiada w sobie metody `addFirst()` oraz `addLast()`.
 
-61. Czy można przekazywać Optional w argumentach metody?
+52. Czy można przekazywać Optional w argumentach metody?
 	Tak, ale nie powinno się. Używanie tak Optionali zaciemnia zapis metody, sprawia że 
 		działanie metody zależy od wartości optionala,
 		optional w porównaniu do nullowalnych argumentów jest bardziej kosztowny.
 	Optional może reprezentować aż trzy różne stany: null, non-null ale isPresent = false,
 		oraz non-null opakowujący właściwą wartość.
 
-62.	Skoro nie to jak można obsłużyć zmienną która może być nullem?
+53. Skoro nie, to jak można obsłużyć zmienną, która może być nullem?
 	Najbardziej eleganckim rozwiązaniem jest stworzenie overloadowanej metody
-	obsługującej wariant logiki z argumentem null.
+		obsługującej wariant logiki z argumentem null.
 
-63.	Jaka lista jeżeli chcę dodawać dane zawsze na początku?
-	Klasa LinkedList posiada w sobie metody `addFirst()` oraz `addLast()` 
+54. Co to jest LinkedList?
+	Podwójnie łączona lista danych - każdy jej node przechowuje informacje o swojej zawartości, 
+	jak i odnośniki do node przed i za nim.
 
-64.	Co to jest LinkedList?
-	Podwójnie łączona lista danych - każdy jej node przechowuje informacje
-	o swojej zawartości, jak i odnośniki do node przed i za nim.
+55. Co wprowadziła Java 8?
+	- Streamy,
+	- Wyrażenia lambda,
+	- Interfejsy funkcyjne,
+	- Try-with-resources,
+	- Optionale,
+	- Typy generyczne.
 
-65.	Co wprowadziła Java 8?
-	- 	Streamy
-	- 	Wyrażenia lambda
-	- 	Interfejsy funkcyjne
-	-	Try-with-resources
-	-	Optionale
-	-	Typy generyczne
+56. Wymień trzy interfejsy funkcyjne i opisz je.
+	- Function: przyjmuje jeden argument i zwraca jeden argument,
+	- Customer: przyjmuje jeden argument i nie zwraca nic,
+	- Predicate: przyjmuje jeden argument i wywołuje na nim test logiczny,
+	- Supplier: nie przyjmuje argumentów, i zwraca jeden,
+	- Operator: przyjmuje i zwraca ten sam typ danych.
 
-66.	Trzy interfejsy funkcyjne i opisać je
-	- 	Function: przyjmuje jeden argument i zwraca jeden argument
-	-	Customer: przyjmuje jeden argument i nie zwraca nic
-	-	Predicate: przyjmuje jeden argument i wywołuje na nim test logiczny
-	-	Supplier: nie przyjmuej argumentów, i zwraca jeden
-	-	Operator: przyjmuje i zwraca ten sam typ danych
-
-67.	Map vs flatMap w Streamach
-	-	Map służy do mapowania wartości w streamie na inne wartości przy użyciu
+57. Różnice między Map vs FlatMap w Streamach
+	- Map służy do mapowania wartości w streamie na inne wartości przy użyciu
 		interfejsu funkcyjnego Function
-	-	flatMap używamy w momencie kiedy musimy "spłaszczyć" rezultat działania,
-		tzn: jeżeli mamy np. nested stream, kolekcję lub optional 
+	- FlatMap używamy w momencie kiedy musimy "spłaszczyć" rezultat działania,
+		tzn: jeżeli mamy np: nested stream, kolekcję lub optional 
 		Optional.of(Optional.of(foo)) lub List<List<String>> 
 		to używając flatMap możemy to spłaszczyć do Optional.of(foo) i List<String>
 
-68.	Jak sprawić żeby obiekt był Immutable?
-	-	Ustawić pola jako `private final`
-	-	Gettery zwracające nie bezpośrednią referncję do obiektu, ale jego kopię (klon)
-	-	Ustawić klase jako `final`
-	-	Nie tworzyć setterów do pól
-	-	Inicjalizacja pól z argumentów konstruktora powinna odbywać się
-		przez deep copy tych arugmentów na pola
+58. Jak sprawić, żeby obiekt był Immutable?
+	- Ustawić pola jako `private final`,
+	- Gettery zwracające nie bezpośrednią referencję do obiektu, ale jego kopię (klon),
+	- Ustawić klase jako `final`,
+	- Nie tworzyć setterów do pól,
+	- Inicjalizacja pól z argumentów konstruktora powinna odbywać się
+		przez deep copy tych argumentów na pola.
 
-69.	Jak przekazać do obiektu immutable przez konstruktor np. mapę?
-	Aby wypełnić immutable pole taką mapą należy jej zawartość skopiować do tego pola
-	(deep copy)
+59. Jak przekazać do obiektu immutable przez konstruktor np. mapę?
+	Aby wypełnić immutable pole taką mapą należy jej zawartość skopiować do tego pola (deep copy)
 
-70.	Jak działa HashMapa?
-	-	HashMapa przy inicjalizacji tworzy serię pustych bucketów (domyślnie 16),
+60. Jak działa HashMapa?
+	- HashMapa przy inicjalizacji tworzy serię pustych bucketów (domyślnie 16),
 		z których każdy może mieć jeden lub więcej nodów połączonych jak LinkedList.
-	-	Przy dodawaniu elementu HashMap oblicza hashCode klucza i potem używając
+	- Przy dodawaniu elementu HashMap oblicza hashCode klucza i potem używając
 			`index = (n-1) & hash` 	//kalkulacja modulo używając bit mask, szybsze niż `hash % n`
 			gdzie `n` to ilość bucketów
 		(klucz `null` wyląduje w bucket 0)
 		ustala index bucketa, do którego wrzuci dany obiekt.
-	-	Każdy node będzie zawierał: 
+	- Każdy node będzie zawierał: 
 		- key
 		- hashcode
 		- value
 		- next //referencja do następnego node
 
-71.	Jak działa HashSet
-	-	HashSet zapewnia unikalność danych, nie zapewniając ani kolejności, ani sortowania.
-	-	Działa to tak, że metoda "add" HashSetu wywołuje metodę "put" istniejącej w nim
+61. Jak działa HashSet
+	- HashSet zapewnia unikalność danych, nie zapewniając ani kolejności, ani sortowania.
+	- Działa to tak, że metoda "add" HashSetu wywołuje metodę "put" istniejącej w nim
 		HashMapy. Jako klucz dodawany jest Obiekt przeznaczony do dodania do HashSetu,
 		jako wartość - stały obiekt o nazwie PRESENT.
-	-	Potem metoda `add` sprawdza czy `put` zwrocilo null (udalo sie dodac unikalna wartosc)
+	- Potem metoda `add` sprawdza czy `put` zwrocilo null (udalo sie dodac unikalna wartosc)
 		czy nie (zwraca PRESENT != null, taka pozycja juz istnieje w mapie) i zwraca
-		odpowiednio `true` lub `false`	
+		odpowiednio `true` lub `false`.	
 
-71.	a) Czy można dodać do HashMapy dwa klucze o tym samym hashu?
-	b) Czy możemy zmienić hashcode już istniejącego w mapie obiektu?
-	c) Co się wtedy stanie?
-	ad a) 	Można dodać, trafią wtedy do tego samego bucketa i połączą się w LinkedList.
-	ab b,c)	Możemy, ale nie powinno się tego robić, bo psuje to mapę i obiekt o zmienionym
-			hashcode nie będzie już dostępny. Najlepiej jeżeli obiekty używane jako klucze
-			będą immutable
+62. HashMap, hashcode, stany
+a) Czy można dodać do HashMapy dwa klucze o tym samym hashu?
+b) Czy możemy zmienić hashcode już istniejącego w mapie obiektu?
+c) Co się wtedy stanie?
+	AD. a) 	Można dodać, trafią wtedy do tego samego bucketa i połączą się w LinkedList.
+	AD. b,c) Możemy, ale nie powinno się tego robić, bo psuje to mapę i obiekt o zmienionym hashcode 
+		nie będzie już dostępny. Najlepiej jeżeli obiekty używane jako klucze będą immutable.
 
-72.	Czy w Javie występuje polimorfizm pól
+63. Czy w Javie występuje polimorfizm pól?
 	Nie, o ile metody można overridować to pola w javie są chowane przy dziedziczeniu.
-	Dzięki temu mamy dostęp i do pól nadklasy przez `super()` i subklasy przez `this()`
+		Dzięki temu mamy dostęp i do pól nadklasy przez `super()` i subklasy przez `this()`.
 
-73.	Bubble sort
+63. Co to jest Bubble sort?
 	Idziemy po kolei po ciągu liczb sprawdzając czy liczba na miejscu `i` jest większa
-	od liczby na miejscu `i+1`. Jeżeli tak to zamieniamy je miejscami. W ciągu `n-1` iteracji
-	(gdzie n jest ilością elementów) powinniśmy uzyskać posortowany ciąg. 
+		od liczby na miejscu `i+1`. Jeżeli tak to zamieniamy je miejscami. W ciągu `n-1` iteracji
+		(gdzie n jest ilością elementów) powinniśmy uzyskać posortowany ciąg. 
 	Przy każdej iteracji największa nieposortowana liczba będzie "płynęła" na koniec ciągu,
-	ustawiając go w kolejności od najmniejszej do największej.
-	*	Usprawnienie: dodać flagę `boolean swapped = false` która będzie ustawiana na `true`
-		jeżeli w danej iteracji nastąpiła zamiana. Jeżeli nie, to można uznać że ciąg
-		jest już posortowany.
-		Sprawić żeby algorytm przy każdym przebiegu nie sprawdzał ostatnich, wiadomo że posortowanych
-		elementów ciągu.
+		ustawiając go w kolejności od najmniejszej do największej.
+	*Usprawnienie: dodać flagę `boolean swapped = false` która będzie ustawiana na `true`,
+			jeżeli w danej iteracji nastąpiła zamiana. 
+			Jeżeli nie, to można uznać że ciąg jest już posortowany.
+			Sprawić żeby algorytm przy każdym przebiegu nie sprawdzał ostatnich, 
+				wiadomo że posortowanych elementów ciągu.
 
-74. Wybrane wzorce projektowe
-	*	Wzorce kreacyjne
-		-	Singleton
-			Zapewnia że będzie istniała tylko jedna instancja danego obiektu na ciąg działania 
-			programu. Obenie uważany za antywzorzec.
-			1.	Prywatny konstruktor, żeby uniemożliwić tworzenie większej ilości obiektów
-			2.	`public static final` pole o klasie takiej samej jak singleton
-			3.	`public static` metoda która zwraca instancję klasy
+64. Wybrane wzorce projektowe
+	* Wzorce kreacyjne
+		- Singleton
+			Zapewnia że będzie istniała tylko jedna instancja danego obiektu na ciąg działania programu. 
+				Obecnie uważany za antywzorzec.
+				1. Prywatny konstruktor, żeby uniemożliwić tworzenie większej ilości obiektów
+				2. `public static final` pole o klasie takiej samej jak singleton
+				3. `public static` metoda która zwraca instancję klasy
 
-		-	Fabryka
+		- Fabryka
 			Fabryka polega na oddelegowaniu zadania tworzenia obiektów z głównej logiki programu
-			na specjalną klasę. Klasa ta będzie generowała nowe obiekty w zalezności od 
-			przekazanych jej parametrów. Fabryka może być np. Singletonem, lub posiadać statyczne
-			metody odpowiedzialne za tworzenie obiektów.
+				na specjalną klasę. Klasa ta będzie generowała nowe obiekty w zalezności od 
+				przekazanych jej parametrów. Fabryka może być np. Singletonem, lub posiadać statyczne
+				metody odpowiedzialne za tworzenie obiektów.
 		
-		-	Abstrakcyjna fabryka
+		- Abstrakcyjna fabryka
 			"Fabryka fabryk". Wzorzec polega na tym, żeby tworzyć wiele implementacji abstrakcji
-			odpowiedzialnej za tworzenie obiektów i potem fabryka zwraca nam te implementacje,
-			czyli konkretne fabryki odpowiedzialne za tworzenie obiektów rządnego typu.
+				odpowiedzialnej za tworzenie obiektów i potem fabryka zwraca nam te implementacje,
+				czyli konkretne fabryki odpowiedzialne za tworzenie obiektów rządnego typu.
 			
-		- 	Builder
+		- Builder
 			Pattern służący do tworzenia obiektów o dużej ilości opcjonalnych pól. Po części
-			rozwiązuje problemy, jakie mają z nimi fabryki. Builder pozwala tworzyć obiekt
-			krok po kroku, wypełniając każde pole oraz posiada metodę zwracającą gotowy obiekt.
+				rozwiązuje problemy, jakie mają z nimi fabryki. Builder pozwala tworzyć obiekt
+				krok po kroku, wypełniając każde pole oraz posiada metodę zwracającą gotowy obiekt.
 
-		-	Prototyp
-			Wzorzec używany kiedy tworzenie nowych pełnych obiektów kosztuje zbyt dużo czasu i zasobów,
-			a istnieje już w programi podobny obiekt. Wtedy kopiujemy ten obiekt i modyfikujemy go
-			w zależności od naszych potrzeb. Obiekt klonujemy metodą `clone()` wczesniej implementując
-			interfejs Cloneable. Możemy użyć deep lub shallow copy. 
+		- Prototyp
+			Wzorzec używany, kiedy tworzenie nowych pełnych obiektów kosztuje zbyt dużo czasu i zasobów,
+				a istnieje już w programie podobny obiekt. Wtedy kopiujemy ten obiekt i modyfikujemy go
+				w zależności od naszych potrzeb. Obiekt klonujemy metodą `clone()` wczesniej implementując
+				interfejs Cloneable. Możemy użyć deep lub shallow copy. 
 
-	*	Wzorce strukturalne
-		-	Adapter
+	* Wzorce strukturalne
+		- Adapter
 			Służy do łączenia dwóch niezwiązanych ze sobą interfejsów. Taki adapter służyć będzie
-			do konwersji jednego interfejsu w interfejs oczekiwany przez klienta.
+				do konwersji jednego interfejsu w interfejs oczekiwany przez klienta.
 
-	*	Wzorce behawioralne	
-		-	Chain of Resposibility
-			Grupa obiektów która między sobą na rozwiązać pewien problem. Jeżeli jeden z tych obiektów
-			nie może rozwiązać problemu, zostaje on przekazany dalej w łańcuchu.
+	* Wzorce behawioralne	
+		- Chain of Resposibility
+			Grupa obiektów, która między sobą ma rozwiązać pewien problem. Jeżeli jeden z tych obiektów
+				nie może rozwiązać problemu, zostaje on przekazany dalej w łańcuchu.
 
-		-	Observer
-			Obiekt posiada "subskrybentów" (obserwatorów) swojego stanu i może ich informować
-			o zmianach w nim.  Subskrybenci nie wysyłają zapytań do obiektu, tak więc
-			pozwalają mu spokojnie pracować i czekają na wybudzenie przez ten obiekt.
+		- Observer
+			Obiekt posiada "subskrybentów" (obserwatorów) swojego stanu i może ich informować o zmianach w nim. 
+				Subskrybenci nie wysyłają zapytań do obiektu, tak więc pozwalają mu spokojnie pracować i 
+				czekają na wybudzenie przez ten obiekt.
 
-		-	Strategy
-			*	Używanie kompozycji a nie dziedziczenia
-			*	Wprowadza się abstrakcyjne "strategie", które potem są implementowane w konkretne
-				wersje algorytmów.
-				np. mamy kaczki z których każda musi kwakać. Zamiast tworzyć metodę quack() w superklasie
-				Duck z której dziedziczą wszystkie inne kaczki, tworzymy np. Interfejs albo Subklasę
-				IQuackStrategy w której jest abstrakcyjna metoda quack() i potem implementacje np:
-				SimpleQuackStrategy i LoudQuackStrategy z których każda będzie miała własną implementację
-				quack();
-				Główna klasa Duck powinna wtedy posiadać pole IQuackStrategy w które w konstruktorze
-				wstrzykniemy odpowiednią implementację tego interfejsu.
-			*	Dzięki temu możemy np. w trakcie trwania programu podmienić implementację
-		danej abstracji w naszym obiekcie.
+		- Strategy
+			1. Używanie kompozycji, a nie dziedziczenia
+			2. Wprowadza się abstrakcyjne "strategie", które potem są implementowane w konkretne wersje algorytmów.
+				np. mamy kaczki z których każda musi kwakać. 
+				Zamiast tworzyć metodę quack() w superklasie, Duck z której dziedziczą wszystkie inne kaczki, 
+				tworzymy np. Interfejs albo Subklasę
+				IQuackStrategy w której jest abstrakcyjna metoda quack() 
+				i potem implementacje np: SimpleQuackStrategy i LoudQuackStrategy 
+				z których każda będzie miała własną implementację quack();
+					Główna klasa Duck powinna wtedy posiadać pole IQuackStrategy w które w konstruktorze
+					wstrzykniemy odpowiednią implementację tego interfejsu.
+			3. Dzięki temu możemy np. w trakcie trwania programu podmienić implementację 
+				danej abstracji w naszym obiekcie.
 
-	*	Inne
-		-	MVC
+	* Inne
+		- MVC
 			Wzorzec polegający na rozdzieleniu logiki aplikacji webowej na odpowiednie części:
-			- Model:	Dane aplikacji, tu umieszczona jest logika odpowiedzialna np.
-						za komunikację z bazą danych i dostarczenie tych danych do 
-						kontrolera.
-			- Controller:	Część programu służąca za most między zapytaniami i danymi
-							pobieranymi z Widoku a modelem. Są to często zestawy kontrolerów
-							obsługujących zapytania RESTowe.
-			- View:		front-end, część programu z która bezpośrednio oddziaływuje użytkownik
-						aplikacji webowej (jeżeli nie wysyła czystych zapytań RESTowych)
+			- Model: Dane aplikacji, tu umieszczona jest logika odpowiedzialna np.
+					za komunikację z bazą danych i dostarczenie tych danych do kontrolera.
+			- Controller: Część programu służąca za most między zapytaniami i danymi
+					pobieranymi z Widoku a modelem. Są to często zestawy kontrolerów
+					obsługujących zapytania RESTowe.
+			- View:	front-end, część programu z która bezpośrednio oddziaływuje użytkownik
+				aplikacji webowej (jeżeli nie wysyła czystych zapytań RESTowych).
 
-75.	ThreadPool
-	ThreadPool istnienje by zaoszczędzić zasoby kiedy aplikacjia wymaga różnych wątków
-	wykonujących różne zadania. Podobnie jak StringPool - zmiast tworzyć nowy thread
-	używa się już istniejących w poolu.
+65. Co to jest ThreadPool?
+	1. ThreadPool istnieje by zaoszczędzić zasoby, kiedy aplikacja wymaga różnych wątków wykonujących różne zadania. 
+		Podobnie jak StringPool - zmiast tworzyć nowy thread używa się już istniejących w poolu.
 
-	Thready w ThreadPoolu nasłuchują wykonywalnych tasków z BlockingQueue i wykonują
-	je jeżeli są dostępne.
-	ThreadPool pozwala wykorzystac dobrodziejstwa wielowątkowości, ale pozwala się 
-	skupić na logice którą chcemy zaimplementować, a nie samą mechaniką wątków.
+	2. Thready w ThreadPoolu nasłuchują wykonywalnych tasków z BlockingQueue i wykonują je jeżeli są dostępne.
+		ThreadPool pozwala wykorzystać dobrodziejstwa wielowątkowości, ale pozwala się skupić na logice, którą 
+		chcemy zaimplementować, a nie samą mechaniką wątków.
 
-	ExecutorService - interface implementujący Executor
-	służący do zarządzania threadpoolami, posiada metody takie jak:
-		submit() - 	przyjmuje albo Callable albo Runnable i zwraca obiekt Future
-					jeżeli przekazaliśmy Runnable to przy powodzeniu future.get() zwróci null
-					jeżeli Callable to zwróci to co miała zwrócić metoda run()
-		shutdown() -	zamyka dany ExecutorService
-		execute() -	wywołuje metode run() z przekazanego Runnable
+	3. ExecutorService - interface implementujący Executor służący do zarządzania threadpoolami, posiada metody takie jak:
+		submit() - przyjmuje albo Callable albo Runnable i zwraca obiekt Future
+				jeżeli przekazaliśmy Runnable to przy powodzeniu future.get() zwróci null
+				jeżeli Callable to zwróci to co miała zwrócić metoda run().
+		shutdown() - zamyka dany ExecutorService,
+		execute() - wywołuje metode run() z przekazanego Runnable.
 
-	Executory tworzy się za pomocą factory methods zawartych w klasie Executors, np:
+	4. Executory tworzy się za pomocą factory methods zawartych w klasie Executors, np:
 		newSingleThreadExecutor();
 		newCachedThreadPool(int n);
 		newScheaduledThreadPool(int n);
 
-	Inna implementacja Executor: ThreadPoolExecutor który tworzymy przez konstruktor,
+	5. Inna implementacja Executor: ThreadPoolExecutor który tworzymy przez konstruktor,
 	tworzy i usuwa thready w zależności od obłozenia kolejki.
 	
-76. Callable vs Runnable
-	Obydwa interfejsy implementujemy jezeli chcemy żeby instancje naszej klasy mogły być 
-	wykonywane przez inne wątki. Różnica jest tak że z Runnable implementujemy metodę run(),
-	która nic nie zwraca, podczas gdy z Callable<V> mamy metodę `V call()` która może
-	zwracać wartość okresloną przy implementacji intefejsu.
+66. Różnice między Callable vs Runnable
+	Obydwa interfejsy implementujemy jeżeli chcemy, żeby instancje naszej klasy mogły być wykonywane przez inne wątki. 
+		Różnica jest tak że z Runnable implementujemy metodę run(), która nic nie zwraca, 
+		podczas gdy z Callable<V> mamy metodę `V call()` która może zwracać wartość okresloną 
+		przy implementacji intefejsu.
 
-===========		 SQL 	==============
+# =============== SQL =============== # 
 
-1.	Co to jest SQL
-	SQL to Structured Query Language który służy do tworzenia i zarządzania bazami danych
+1. Co to jest SQL?
+	SQL to Structured Query Language który służy do tworzenia i zarządzania bazami danych.
 
-2.	Słowo kluczowe DISTINCT
-	Używa się do wybrania jedynie unikalnych wartosci
+2. Co to jest słowo kluczowe DISTINCT?
+	Używa się do wybrania jedynie unikalnych wartosci. np:
 		SELECT DISTINCT column_name
 		FROM table_name;
 
-3.	Konstrukcja komendy wyboru
+3. Konstrukcja komendy wyboru
 		SELECT column_name 
 		FROM table_name 
 		WHERE condition
@@ -561,52 +553,51 @@
 		GROUP BY 
 		HAVING condition
 
-4.	SQL Constrains
-	-	NOT NULL:	wartosci kolumny nie mogą być nullami
-	-	UNIQUE:		żadna wartość kolumny się nie powtarza
-	-	PRIMARY KEY:	w połączeniu z NOT NULL i UNIQUE tworzy kolumnę służącą
-						do identyfikacji każdej pozycji tabeli
-	-	FOREIGN KEY:	łączy obecną tabelę z inną tabelą określając na jakiej kolumnie
-						występuje połączenie
-	-	CHECK:		zapewnia że dane dodawane do danej kolumny spełniają pewien warunek
+4. Co to jest SQL Constrains?
+	- NOT NULL: wartosci kolumny nie mogą być nullami,
+	- UNIQUE:	żadna wartość kolumny się nie powtarza,
+	- PRIMARY KEY: w połączeniu z NOT NULL i UNIQUE tworzy kolumnę służącą
+				do identyfikacji każdej pozycji tabeli,
+	- FOREIGN KEY: łączy obecną tabelę z inną tabelą określając na jakiej kolumnie
+				występuje połączenie,
+	- CHECK: zapewnia, że dane dodawane do danej kolumny spełniają pewien warunek.
 
-5.	JOINy
-	-	INNER JOIN:	zwraca część wspólną obydwu tabel
-	-	LEFT JOIN:	LEFT OUTER JOIN zwraca lewą tabelę i jej część wspólną z prawą tabelą
-	-	RIGHT JOIN:	RIGHT OUTER JOIN zwraca pprawą tabelę i jej część wspólną z lewą tabelą
-	-	LEFT/RIGHT INNER JOIN:	zwraca lewą/prawą tabelę minus część wspólna z drugą tabelą
+5.Co to są JOINy?
+	- INNER JOIN: zwraca część wspólną obydwu tabel,
+	- LEFT JOIN: LEFT OUTER JOIN zwraca lewą tabelę i jej część wspólną z prawą tabelą,
+	- RIGHT JOIN: RIGHT OUTER JOIN zwraca pprawą tabelę i jej część wspólną z lewą tabelą,
+	- LEFT/RIGHT INNER JOIN: zwraca lewą/prawą tabelę minus część wspólna z drugą tabelą.
 
+# =============== HIBERNATE =============== # 
 
-====	HIBERNATE 	====
-
-1.	Problem n+1
+1. Problem n+1
 	Problem wydajnościowy pobierania danych z bazy danych. Jeżeli w encji przechowujemy listę
-	innych encji to przy jej pobieraniu Hibernate może automatycznie wywołać SELECT dla 
-	każdej encji z tej listy i nagle z 1 zapytania robi nam się N+1 zapytań co wpływa
-	negatywnie na wydajność działania programu. 
+		innych encji to przy jej pobieraniu Hibernate może automatycznie wywołać SELECT dla 
+		każdej encji z tej listy i nagle z 1 zapytania robi nam się N+1 zapytań co wpływa
+		negatywnie na wydajność działania programu. 
 	Przykładowe rozwiązania:
-		-	FetchType.LAZY:	sprawia że dane listy nie będą ładowane
-		-	JOIN fetch: specjalne słowo kluczowe w zapytaniu JPQL
-			któro łączy dwie pobierane tabele i zwraca ich zawartość w jednym zapytaniu
+		- FetchType.LAZY: sprawia, że dane listy nie będą ładowane.
+		- JOIN fetch: specjalne słowo kluczowe w zapytaniu JPQL, które łączy dwie pobierane tabele i 
+				zwraca ich zawartość w jednym zapytaniu.
 	
-2.	Lazy / eager
-	OneToMany i ManyToMany:	ładowanie lazy
-	ManyToOne i OneToOne:	ładowanie eager
+2. Lazy / eager
+	OneToMany i ManyToMany: ładowanie lazy
+	ManyToOne i OneToOne: ładowanie eager
 
-3.	Optimistic / pessimistic locking
-	-	Pessimistic:	aplikacja zamyka dostęp do bazy danych oprócz danej transakcji
-						bezpieczniejsze niż optimistic, ale aplikacja musi być odpowiednio
-						zaprojketowana żeby z niego korzystać
-	-	Optimistic:		wiele transakcji ma dostęp do bazy danych. przed updatem
-						transakcja sprawdza czy versionNo i timeStamp są takie same
-						jak te odczytane przy połączeniu. jeżeli nie to wie że dane
-						sa skażone i anulują tę transakcję
+3. Różnice między Optimistic / pessimistic locking
+	- Pessimistic: aplikacja zamyka dostęp do bazy danych oprócz danej transakcji
+			bezpieczniejsze niż optimistic, ale aplikacja musi być odpowiednio
+			zaprojektowana, żeby z niego korzystać.
+	- Optimistic: wiele transakcji ma dostęp do bazy danych. Przed updatem
+			transakcja sprawdza czy versionNo i timeStamp są takie same
+			jak te odczytane przy połączeniu. Jeżeli nie to wie że dane
+			sa skażone i anulują tę transakcję.
 
-4.	Indeksowanie
-	Implementowane żeby szybciej przesukiwać bazy danych. Zamiast przeszukiwać cała tabelę
-	od początku indeksowanie pozwala pogrupować dane tak, że wyszukiwanie przebiega znacznie szybciej.
-	Minusem jest to że wtedy dodawanie danych trwa dłużej bo każda nowa instancja encji musi zostąć
-	zindeksowana w trakcie dodawania do bazy danych.
+4. Co to jest Indeksowanie?
+	Implementowane, żeby szybciej przeszukiwać bazy danych. Zamiast przeszukiwać cała tabelę
+		od początku indeksowanie pozwala pogrupować dane tak, że wyszukiwanie przebiega znacznie szybciej.
+		Minusem jest to że wtedy dodawanie danych trwa dłużej bo każda nowa instancja encji musi zostąć
+		zindeksowana w trakcie dodawania do bazy danych.
 	Tworzenie:
 		CREATE INDEX index_name
 		ON table_name (column1, columnt2, ...);
